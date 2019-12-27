@@ -1,12 +1,5 @@
  <div align="center">
     <img src="college.jpg" width="700px" height="170px"></div><br>
-<?php //if(isset($_SESSION['admin'])=="")
-    //{
-      //  header("Location: index.php");
-        //exit;
-    //}
-?>
-
 <?php
 session_start();
 require "dbconnect.php";
