@@ -8,14 +8,15 @@ if(isset($_POST['login']))
         header("Location: opening.php");
         exit;
     }
-    if(isset($_SESSION['admin']))
-    {
-        header("Location: open.php");
-        exit;
-    }
+
     if(isset($_SESSION['staff']))
     {
         header("Location: staff.php");
+        exit;
+    }
+    if(isset($_SESSION['admin']))
+    {
+        header("Location: open.php");
         exit;
     }
 $errMSG='';
@@ -46,6 +47,7 @@ if($selection=="student")
          $_SESSION['batch']=$row['batch'];
          $_SESSION['dept']=$row['dept'];
          $_SESSION['reg']=$row['RegNo'];
+		$_SESSION['name']=$row['Student_Name'];
          header("Location: opening.php");
     }
     else
@@ -121,7 +123,7 @@ else if($selection=="admin")
             <div class="form-group">
             <label style="font-size:20px;"><strong>Select</strong></label><br>
             <select name="group" class="form-control">
-            <option value="student">Student</option>
+            <option value="student" >Student</option>   
             <option value="admin">Admin</option>
                 <option value="hod">Head Of Dept</option>
                 

@@ -5,8 +5,10 @@ if(isset($_SESSION['student']))
 {
     
     $sec=$_SESSION['sec'];
+$dep=$_SESSION['dept'];
     $sub=$_SESSION['sub'];
     $batch=$_SESSION['batch'];
+	$who=$_SESSION['student'];
    // $scon=mysqli_connect('localhost','root','',$batch);
 //$res=mysqli_query($scon,"Select staffID from staffdetails where subjectcode='$sub' and section='$sec'");
 //$row=mysqli_fetch_array($res);$staff=$row['staffID'];
@@ -22,6 +24,7 @@ if(isset($_SESSION['student']))
     $res=mysqli_query($scon,"select * from admin where staff_name='$staff'");
     $row=mysqli_fetch_array($res);
     $name=$row['staff_id'];
+	
     if(isset($_POST['submit']))
     {   
 //      $scon=mysqli_connect('localhost','root','',$batch);  
@@ -30,7 +33,7 @@ $com=$_POST['Comments'];
 $id=$_SESSION['student'];
 $entry=$sub."+";
 $sql1="Update student set flag=CONCAT(flag,'$entry') where RollNo='$id'";
-        $sql="Insert into lab values('$sub','$name','$sec',".$_POST['1'].",".$_POST['2'].",".$_POST['3'].",".$_POST['4'].",".$_POST['5'].",".$_POST['6'].",".$_POST['7'].",".$_POST['8'].",".$_POST['9'].",".$_POST['10'].",'$com','$batch')";
+        $sql="Insert into lab values('$sub','$name','$sec',".$_POST['1'].",".$_POST['2'].",".$_POST['3'].",".$_POST['4'].",".$_POST['5'].",".$_POST['6'].",".$_POST['7'].",".$_POST['8'].",".$_POST['9'].",".$_POST['10'].",'$com','$batch','$dep','$who')";
 if(mysqli_query($scon,$sql) && mysqli_query($scon,$sql1)){
 echo '<script type="text/javascript">alert("Response Recorded");</script>';
 $_SESSION['success']="done";

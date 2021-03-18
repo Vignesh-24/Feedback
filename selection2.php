@@ -54,7 +54,7 @@ margin-left:10px
                        var semval1="2";
                        var semOptions = "";
                        semOptions +="<option> </option>";
-                semOptions += "<option>" + semval + "</option>";
+                semOptions += "<option>" + semval1 + "</option>";
               //  semOptions += "<option>" + semval1 + "</option>";
             document.getElementById("sem").innerHTML = semOptions;
                    }
@@ -65,7 +65,7 @@ margin-left:10px
                        var semval1="4";
                        var semOptions = "";
                        semOptions +="<option> </option>";
-                semOptions += "<option>" + semval + "</option>";
+                semOptions += "<option>" + semval1 + "</option>";
               //  semOptions += "<option>" + semval1 + "</option>";
             document.getElementById("sem").innerHTML = semOptions;
                    }
@@ -77,7 +77,7 @@ margin-left:10px
                        var semval1="6";
                        var semOptions = "";
                 semOptions +="<option> </option>";
-                semOptions += "<option>" + semval + "</option>";
+                semOptions += "<option>" + semval1 + "</option>";
               //  semOptions += "<option>" + semval1 + "</option>";
                         document.getElementById("sem").innerHTML = semOptions;
                    }
@@ -88,7 +88,7 @@ margin-left:10px
                        var semval1="8";
                        var semOptions = "";
                        semOptions +="<option> </option>";
-                semOptions += "<option>" + semval + "</option>";
+                semOptions += "<option>" + semval1 + "</option>";
                // semOptions += "<option>" + semval1 + "</option>";
             document.getElementById("sem").innerHTML = semOptions;
                     }

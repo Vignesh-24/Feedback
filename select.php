@@ -14,7 +14,9 @@
     <option value="2016">2016</option>
    <option value="2017">2017</option>
     <option value="2018">2018</option>
-    </select>
+<option value="2019">2019</option>
+    
+</select>
             <br><br><br>
             <div align="center">
             <strong>Select Dept</strong>
@@ -40,6 +42,17 @@
 <option value='AE'>AE</option>
         <option value='MBA-INT'>MBA-INT</option>
                 </select><br><br><br>
+<strong>Select sem</strong>
+<select name="sem">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+</select><br><br><br>
                 <strong>Select Type</strong>
                 <select name="type">
     <option value="THEORY">Theory</option>
@@ -74,13 +87,16 @@ require "dbconnect.php";
 $_SESSION['dept']=$dept1;
     $t=$_POST['type'];
     $_SESSION['type']=$t;
+    $sem=$_POST['sem'];
+    $_SESSION['sem']=$sem;
+  echo $sem;
 if($dept1=='M.B.A' && $ba==2018)
 {
 $sql = "select staff_id,staff_name from admin WHERE Staff_id IN(select DISTINCT StaffID from mbastaffdetails)";
 }
 else
 {
-  $sql = "select staff_id,staff_name from admin WHERE Staff_id IN(select DISTINCT StaffID from staffdetails where dept='$dept1' and batch='$ba' and type='$t')";
+  $sql = "select staff_id,staff_name from admin WHERE Staff_id IN(select DISTINCT StaffID from staffdetails where dept='$dept1' and batch='$ba' and type='$t' and sem='$sem')";
 }
   $res = mysqli_query($scon,$sql);
   while($list = mysqli_fetch_assoc($res)){

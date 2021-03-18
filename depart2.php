@@ -13,6 +13,9 @@ table {
   border-spacing: 10px;  
 }      
     </style>
+<br><br>
+  <a href="open.php" style="float:right; text-decoration:none; font-size:20px;">Home</a><br><br>
+
     <div align="center">
  <table>
     
@@ -20,24 +23,30 @@ table {
     <?php
     $count=0;
     require 'dbconnect.php';
+    session_start();
+     $year=$_SESSION['year1'];
+       $semty=$_SESSION['sem1'];
     $res=mysqli_query($scon,"select distinct dept as dep from staffdetails where subcode in(select subcode from subdetails where ugpg='UG')");
     while($row=mysqli_fetch_array($res))
     {
         $count1=0;
         $dept=$row['dep'];?>
-        <tr><td colspan="12" height="50" align="center"><b><?php echo $dept;?></b></td></tr>
+        <tr><td colspan="15" height="50" align="center"><b><?php echo $dept;?></b></td></tr>
         <tr>
     <th>Batch</th>
     <th>Dept</th>
-    <th>90-99</th>
-    <th>80-89</th>
-    <th>70-79</th>
-    <th>60-69</th>
-    <th>50-59</th>
-    <th>40-49</th>
-    <th>30-39</th>
-    <th>20-29</th>
-    <th>10-19</th>
+    <th>>=95</th>
+        <th>90-94</th>
+        <th>85-89</th>
+        <th>80-84</th>
+        <th>75-79</th>
+        <th>70-74</th>
+        <th>65-69</th>
+        <th>60-64</th>
+        <th>55-59</th>
+        <th>50-54</th>
+        <th>40-49</th>
+        <th>0-39</th>
     <th>Total Count</th>
     </tr>
      <?php
@@ -55,17 +64,33 @@ table {
             <td><?php echo $dept1; ?></td>
            <?php $percent=100;
             $count1=0;
-            while($percent > 10)
+            while($percent>=55)
             {
-            $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and batch=2016 and performance < '$percent' and performance >='$percent'-10");
-                $percent-=10;
+            $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and batch=2016 and semtype='$semty' and performance < '$percent' and performance >='$percent'-5");
+                $percent-=5;
                
                 $row4=mysqli_fetch_array($res2);
                 $c=$row4['ct']; $count1+=$c;?>
                 <td><?php echo $c; ?></td>
-            <?php } ?><td><?php echo $count1; ?></td>
+            <?php } 
+
+             $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and batch=2016 and semtype='$semty'and performance < 50 and performance >=40");
+               
+                $row4=mysqli_fetch_array($res2);
+                $c=$row4['ct']; $count1+=$c;?>
+                <td><?php echo $c; ?></td>
+<?php 
+ $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and batch=2016 and semtype='$semty'and  performance < 40 and performance >=0");
+               
+                $row4=mysqli_fetch_array($res2);
+                $c=$row4['ct']; $count1+=$c;?>
+                <td><?php echo $c; ?></td>
+            <td><?php echo $count1; ?></td>
            </tr>
-       <?php } ?>
+       <?php } 
+
+
+       ?>
         <?php
         $res1=mysqli_query($scon,"SELECT DISTINCT dept from admin where staff_id in (select staffID from staffdetails where dept='$dept' and batch=2017 and subcode IN (select subcode from subdetails where type='THEORY'))");
         $res3=mysqli_query($scon,"SELECT count(DISTINCT dept) as ctt from admin where staff_id in (select staffID from staffdetails where dept='$dept' and batch=2017 and subcode IN (select subcode from subdetails where type='THEORY'))");
@@ -81,15 +106,27 @@ table {
             <td><?php echo $dept1; ?></td>
            <?php $percent=100;
             $count1=0;
-            while($percent > 10)
+            while($percent >=55)
             {
-            $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and batch=2017 and performance < '$percent' and performance >='$percent'-10");
-                $percent-=10;
+            $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and semtype='$semty'and batch=2017 and performance < '$percent' and performance >='$percent'-5");
+                $percent-=5;
                
                 $row4=mysqli_fetch_array($res2);
                 $c=$row4['ct']; $count1+=$c;?>
                 <td><?php echo $c; ?></td>
-            <?php } ?><td><?php echo $count1; ?></td>
+            <?php } 
+ $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and semtype='$semty'and batch=2017 and performance < 50 and performance >=40");
+               
+                $row4=mysqli_fetch_array($res2);
+                $c=$row4['ct']; $count1+=$c;?>
+                <td><?php echo $c; ?></td>
+<?php 
+ $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and semtype='$semty'and  batch=2017 and performance < 40 and performance >=0");
+               
+                $row4=mysqli_fetch_array($res2);
+                $c=$row4['ct']; $count1+=$c;?>
+                <td><?php echo $c; ?></td>
+            <td><?php echo $count1; ?></td>
            </tr>
      
      
@@ -116,15 +153,27 @@ table {
             <td><?php echo $dept1; ?></td>
            <?php $percent=100;
             $count1=0;
-            while($percent > 10)
+            while($percent >=55)
             {
-            $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and batch=2018 and performance < '$percent' and performance >='$percent'-10");
-                $percent-=10;
+            $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and batch=2018 and semtype='$semty'and performance < '$percent' and performance >='$percent'-5");
+                $percent-=5;
                
                 $row4=mysqli_fetch_array($res2);
                 $c=$row4['ct']; $count1+=$c;?>
                 <td><?php echo $c; ?></td>
-            <?php } ?><td><?php echo $count1; ?></td>
+            <?php } 
+ $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and semtype='$semty' and  batch=2018  and performance < 50 and performance >=40");
+               
+                $row4=mysqli_fetch_array($res2);
+                $c=$row4['ct']; $count1+=$c;?>
+                <td><?php echo $c; ?></td>
+<?php 
+ $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and semtype='$semty'and batch=2018 and performance < 40 and performance >=0");
+               
+                $row4=mysqli_fetch_array($res2);
+                $c=$row4['ct']; $count1+=$c;?>
+                <td><?php echo $c; ?></td>
+            <td><?php echo $count1; ?></td>
            </tr>
      <?php 
             }?>
@@ -143,15 +192,27 @@ table {
             <td><?php echo $dept1; ?></td>
            <?php $percent=100;
             $count1=0;
-            while($percent > 10)
+            while($percent >=55)
             {
-            $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and batch=2019 and performance < '$percent' and performance >='$percent'-10");
-                $percent-=10;
+            $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and semtype='$semty'and batch=2019 and performance < '$percent' and performance >='$percent'-5");
+                $percent-=5;
                
                 $row4=mysqli_fetch_array($res2);
                 $c=$row4['ct']; $count1+=$c;?>
                 <td><?php echo $c; ?></td>
-            <?php } ?><td><?php echo $count1; ?></td>
+            <?php } 
+ $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and semtype='$semty'and  batch=2019 and performance < 50 and performance >=40");
+               
+                $row4=mysqli_fetch_array($res2);
+                $c=$row4['ct']; $count1+=$c;?>
+                <td><?php echo $c; ?></td>
+<?php 
+ $res2=mysqli_query($scon,"select count(*) as ct from staffdetails WHERE staffID in (SELECT DISTINCT staff_id from admin where dept='$dept1' and staff_id in (select staffID from staffdetails where dept='$dept')) and dept='$dept' and subcode IN (select subcode from subdetails where type='THEORY')and semtype='$semty'and batch=2019 and performance < 40 and performance >=0");
+               
+                $row4=mysqli_fetch_array($res2);
+                $c=$row4['ct']; $count1+=$c;?>
+                <td><?php echo $c; ?></td>
+            <td><?php echo $count1; ?></td>
            </tr>
      <?php 
             }

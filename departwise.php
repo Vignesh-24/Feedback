@@ -54,8 +54,8 @@ table {
                     
         </div>
       <a style="float:left; font-size:20px;" href="open.php">Home</a><br><br>
-    <form action="departwise.php" method="post">
-   <div class="row" style="margin-left:710px">
+    <form action="departwisefpdf.php" method="post">
+   <div class="row" style="margin-left:600px">
       <div class="col-lg-12">
           <div class="row">
             <div class="col-lg-3">
@@ -78,7 +78,7 @@ table {
             <div class="col-lg-3">
               <div class="form-group">
                 <label><strong>DEPT</strong></label>
-                <select name='dept1' id='dept1' class="form-control">
+                <select name="dp" id='dept1' class="form-control">
                     <option value=""selected="true" disabled="disabled">--Select--</option>
                     <script>
             var ty;
@@ -155,25 +155,32 @@ table {
 <label><strong>SEMESTER</strong></label>
                 <select name="sem" id="type" class="form-control">
                     <option value=""selected="true" disabled="disabled">--Select--</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-        </select>
+
+            <option value="ODD">Odd</option>
+            <option value="EVEN">Even</option>
+                </select>
                 </div>
             </div>
 
         </div>
+
+
+
+        <div class="row">
+            <div class="col-lg-3">
+            <div class="form-group">
+                <button type="submit" name="submit" class="btn btn-danger btn-block">Get Info</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
                  </div>
         </div>
-              <br><br>
-       <div align="center">
-        <button type="submit" name="submit" class="btn btn-danger">Get Info</button>
-           </div>
+             
        <br><br><br>
         <div align="center" id="printableArea">
             <br><br>
@@ -215,8 +222,10 @@ table {
   while($list = mysqli_fetch_assoc($res)){
     $category = $list['staff_id'];
       $username=$list['staff_name'];
-      
-$sql1="select * from staffdetails where staffID = '$category' and subcode IN(select subcode from subdetails where ugpg='UG') and sem='$stype'";
+    if($stype=='odd')
+$sql1="select * from staffdetails where staffID = '$category' and subcode IN(select subcode from subdetails where ugpg='UG') and (sem='1' or sem='3' or sem='5' or sem='7')";
+      else
+$sql1="select * from staffdetails where staffID = '$category' and subcode IN(select subcode from subdetails where ugpg='UG') and (sem='2' or sem='4' or sem='6' or sem='8')";
     $res1=mysqli_query($scon,$sql1);
       while($list1=mysqli_fetch_assoc($res1))
       {
@@ -298,8 +307,10 @@ $res3=mysqli_query($scon,"select AVG(t1),AVG(t2),AVG(t3),AVG(t4),AVG(t5),AVG(t6)
   while($list = mysqli_fetch_assoc($res)){
     $category = $list['staff_id'];
       $username=$list['staff_name'];
-      
-$sql1="select * from staffdetails where staffID = '$category' and subcode IN(select subcode from subdetails where ugpg='PG') and sem='$stype'";
+if($stype=='odd')      
+$sql1="select * from staffdetails where staffID = '$category' and subcode IN(select subcode from subdetails where ugpg='PG') and (sem='1' or sem='3' or sem='5' or sem='7')";
+else
+    $sql1="select * from staffdetails where staffID = '$category' and subcode IN(select subcode from subdetails where ugpg='PG') and (sem='2' or sem='4' or sem='6' or sem='8')";
     $res1=mysqli_query($scon,$sql1);
       while($list1=mysqli_fetch_assoc($res1))
       {
@@ -315,7 +326,7 @@ $sql1="select * from staffdetails where staffID = '$category' and subcode IN(sel
         $row2=mysqli_fetch_array($res2);
           $suname=$row2['subname'];
           $ty=$row2['type'];
-//            echo $ty;
+
           if($type=="THEORY")
           {
 $res3=mysqli_query($scon,"select AVG(t1),AVG(t2),AVG(t3),AVG(t4),AVG(t5),AVG(t6),AVG(t7),AVG(t8),AVG(t9),AVG(t10),AVG(t11),AVG(t12),AVG(t13),AVG(t14),AVG(t15),AVG(t16),AVG(t17),AVG(t18),AVG(t19),AVG(t20) from theory where sub_code='$sub' and staff_id='$category' and section='$sec' and batch='$bat'");
@@ -359,8 +370,6 @@ $res3=mysqli_query($scon,"select AVG(t1),AVG(t2),AVG(t3),AVG(t4),AVG(t5),AVG(t6)
 ?>
               <br>
         </div>
-        <div align="center" class="box">
-       <button class="btn btn-primary" onclick="printDiv('printableArea','printableArea1')" value="print a div!">Save as PDF</button>
-       </div>
+        
         </form>
 </html>

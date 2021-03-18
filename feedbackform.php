@@ -9,6 +9,8 @@ if(isset($_SESSION['student']))
     $batch=$_SESSION['batch'];
     $dep=$_SESSION['dept'];
     $reg=$_SESSION['reg'];
+	$who=$_SESSION['student'];
+
     $count=0;
     if($dep=='M.B.A' and $_SESSION['sem']=='3')
     {
@@ -49,7 +51,7 @@ $com=$_POST['Comments'];
 $id=$_SESSION['student'];
 $entry=$sub."+";
 $sql1="Update student set flag=CONCAT(flag,'$entry') where RollNo='$id'";
-$sql="Insert into theory values('$sub','$staff','$sec',".$_POST['t1'].",".$_POST['t2'].",".$_POST['t3'].",".$_POST['t4'].",".$_POST['t5'].",".$_POST['t6'].",".$_POST['t7'].",".$_POST['t8'].",".$_POST['t9'].",".$_POST['t10'].",".$_POST['t11'].",".$_POST['t12'].",".$_POST['t13'].",".$_POST['t14'].",".$_POST['t15'].",".$_POST['t16'].",".$_POST['t17'].",".$_POST['t18'].",".$_POST['t19'].",".$_POST['t20'].",'$com','$batch','$dep')";
+$sql="Insert into theory values('$sub','$staff','$sec',".$_POST['t1'].",".$_POST['t2'].",".$_POST['t3'].",".$_POST['t4'].",".$_POST['t5'].",".$_POST['t6'].",".$_POST['t7'].",".$_POST['t8'].",".$_POST['t9'].",".$_POST['t10'].",".$_POST['t11'].",".$_POST['t12'].",".$_POST['t13'].",".$_POST['t14'].",".$_POST['t15'].",".$_POST['t16'].",".$_POST['t17'].",".$_POST['t18'].",".$_POST['t19'].",".$_POST['t20'].",'$com','$batch','$dep','$who')";
 if(mysqli_query($scon,$sql) && mysqli_query($scon,$sql1))
 {
 echo '<script type="text/javascript">alert("Response Recorded");</script>';

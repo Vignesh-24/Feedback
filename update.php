@@ -8,6 +8,8 @@ session_start();
 
 <html>
 <body>
+    <h3><a href="logout.php" style="float:right; font-size:25px; font-color:red";><b>Logout</b></a></h3>
+    <h3><a href="hodopen.php" style="float:left; font-size:25px; font-color:red";><b>Back</b></a></h3>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,11 +22,14 @@ session_start();
     body{
         background-color:deepskyblue;
     }
+        a{
+            color:darkblue;
+        }
     label{
         font-size: 20px;
     }
     .sub{
-        margin-left:100px;
+        margin-left:250px;
     }
 </style>
     <form action="update.php" method="post">
@@ -67,6 +72,7 @@ session_start();
             <div class="form-group">
               <label><strong>Department</strong></label>
               <select name="dept" class="form-control">
+<!--
                   <option value="" disabled selected>Select Department</option>
     <option value="CSE">CSE</option>
     <option value="MECH">MECH</option>
@@ -78,7 +84,33 @@ session_start();
     <option value="ICE">ICE</option>
     <option value="EIE">EIE</option>
     <option value="BIO">BIOTECH</option>
-
+-->
+<?php 
+                  
+                  $option=$_SESSION['hod'];
+                  if($option=='MATHS' || $option== 'SCIENCE')
+                  { ?>
+                    <option value="" disabled selected>Select Department</option>
+    <option value="CSE">CSE</option>
+    <option value="MECH">MECH</option>
+    <option value="ECE">ECE</option>
+    <option value="EEE">EEE</option>
+    <option value="IT">IT</option>
+    <option value="CHEMICAL">CHEM</option>
+    <option value="CIVIL">CIVIL</option>
+    <option value="ICE">ICE</option>
+    <option value="EIE">EIE</option>
+    <option value="BIO">BIOTECH</option>   
+                  <?php }
+                  else if($option=='M.B.A')
+                  {
+                    echo "<option value='$option'>$option</option>";
+                      echo "<option value='MBA-INT'>MBA-INT</option>";
+                  }
+                  else{
+                  echo "<option value='$option'>$option</option>";}
+?>
+                
               </select>
           
             </div>
@@ -99,10 +131,13 @@ session_start();
         </div>
           <div class="row"><br><br>
               <button style="margin-left:480px" type="submit" name="sub" class="btn btn-lg btn-danger">Get Info</button>
+              <br>
+              
           </div>
     </div>
     </div>
         </form>
+    <br>
         <script>
         function myfun(itm) {
             console.log(itm);
@@ -151,6 +186,12 @@ session_start();
 </div>
                     </div>
                     
+                    <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>StaffName</label>
+</div>
+                    </div>
+                    
                    <div class="col-lg-3">
                     <div class="form-group">
                         <label>StaffID</label>
@@ -172,6 +213,10 @@ session_start();
     {
         $subcode="sub".$i;
         $staff="staff".$i;
+        $id=$row['staffID'];
+        $res5=mysqli_query($scon,"select staff_name from admin where staff_id='$id'");
+        $row5=mysqli_fetch_array($res5);
+        $staffname=$row5['staff_name'];
         $i++;
         $_SESSION['count']=$i;
      ?> 
@@ -181,8 +226,15 @@ session_start();
     <div class="form-group">
     <input type="text" name="<?php echo $subcode; ?>" value="<?php echo $row['subcode']; ?>" class="form-control" readonly>
     </div>
-    </div>
+        </div>
         <div class="col-lg-3">
+    <div class="form-group">
+    <input type="text" value="<?php echo $staffname; ?>" class="form-control" readonly>
+    </div>
+        
+        
+    </div>
+        <div class="col-lg-2">
             <div class="form-group">
         <input type="text" id="<?php echo $staff;?>" name="<?php echo $staff;?>" value="<?php echo $row['staffID'];?>" class="form-control" readonly>  
         </div>

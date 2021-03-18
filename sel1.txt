@@ -1,0 +1,56 @@
+ <div align="center">
+    <img src="college.jpg" width="1000px" height="170px"></div><br>
+
+    <form action="selectnew.php" method="post">
+        <div align="center">
+    <select name="batch">
+    <option value="batch_16">2016-2020</option>
+   <option value="batch_17">2017-2021</option>
+    <option value="batch_18">2018-2022</option>
+    </select>
+            <button type="submit">Get Staff Details</button>
+            </div>
+     </form>
+<form action="select2.php" method="get">
+    <div align="center">
+<select name="staffid" id="staffid" >
+<?php 
+session_start();
+if(isset($_SESSION['admin'])=="")
+    {
+        header("Location: index.php");
+        exit;
+    }
+//require "dbconnect.php";
+  $scon=mysqli_connect('localhost','root','',$_SESSION['batch']);  
+  //$dept1=$_SESSION['depart'];
+    $dept1='cse';
+  $ba=$_POST['batch'];
+    $_SESSION['batch']=$ba;
+  $sql = "select staff_id,staff_name from login.admin WHERE Staff_id IN(select DISTINCT StaffID from $ba.staffdetails where dept='$dept1')";
+  $res = mysqli_query($scon,$sql);
+  while($list = mysqli_fetch_assoc($res)){
+    $category = $list['staff_id'];
+      $username=$list['staff_name'];
+    //$username=$list['StaffName'];
+      //$html="<html>"
+    //$options = $list['options'];
+?>
+
+<option value="<?php echo $category,"-",$username?>"><?php echo $category,"-",$username?></option>
+
+
+<?php 
+  }
+?>
+    </select>
+    
+    
+    <select name="type">
+    <option value="no">Theory</option>
+    <option value="yes">Practical</option>
+    </select>
+  <input type="submit" name="submit">
+        </div>
+    </form>
+

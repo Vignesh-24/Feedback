@@ -25,7 +25,8 @@ table {
   width:70%
 }
 </style>
-<a href="open.php" style="float:left; text-decoration:none; font-size:20px;">Back</a><br>
+<br><br>
+  <a href="open.php" style="float:right; text-decoration:none; font-size:20px;">Home</a><br><br>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <div style="margin-top:100px">
@@ -39,10 +40,10 @@ table {
     
 </tr>    
 <tr>
-<th colspan="4">Semester 1</th>
-<th colspan="4">Semester 3</th>
-<th colspan="4">Semester 5</th>
-<th colspan="4">Semester 7</th>
+<th colspan="4">Semester 2</th>
+<th colspan="4">Semester 4</th>
+<th colspan="4">Semester 6</th>
+<th colspan="4">Semester 8</th>
 </tr>
 <tr>
 <th>A</th>
@@ -82,7 +83,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2019 and sec='A'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
     echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -92,7 +93,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2019 and sec='B'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green; font-size:40px;'>check</i>$count/$count1</td>";
 else
 echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -102,7 +103,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2019 and sec='C'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
     echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -123,7 +124,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2018 and sec='A'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
     echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -133,7 +134,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2018 and sec='B'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green; font-size:40px;'>check</i>$count/$count1</td>";
 else
 echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -143,7 +144,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2018 and sec='C'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
     echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -155,7 +156,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2017 and sec='A'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
     echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -166,7 +167,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2017 and sec='B'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
     echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -178,7 +179,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2017 and sec='C'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
     echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -189,7 +190,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2016 and sec='A'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
 echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -199,7 +200,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2016 and sec='B'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
 echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -209,7 +210,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2016 and sec='C'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
     echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";
@@ -219,7 +220,7 @@ $count1=$row1['ct'];
 $res=mysqli_query($scon,"SELECT COUNT(*) as ct from student where dept='$dept' and flag!='' and batch=2016 and sec='D'");
 $row=mysqli_fetch_array($res);
 $count=$row['ct'];
-if($count > 3)
+if($count > 0)
 echo "<td><i class='material-icons' style='color:green;font-size:40px;'>check</i>$count/$count1</td>";
 else
 echo "<td><i class='material-icons' style='color:red;font-size:40px;'>close</i></td>";

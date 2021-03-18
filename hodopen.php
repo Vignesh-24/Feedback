@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['hod'])=="")
 {
-    header("Location: index.php");exit;
+    header("Location: logout.php");exit;
 }
 if($_SESSION['suc']==1)
     echo '<script type ="text/javascript">alert("Staff details recorded :)");</script>';
@@ -40,7 +40,7 @@ $_SESSION['suc']=5; ?>
         <div class="row">
           <div class="col-lg-6">
             <div class="form-group">    
-                 <button class="btn btn-success"><a style="text-decoration: none; color:wheat; font-size:200%" href="insert.php" >Add Staff Details</a></button>
+                 <button class="btn btn-success"><a style="text-decoration: none; color:wheat; font-size:200%" href="insert1.php" >Add Staff Details</a></button>
             </div>
           </div>
         </div>
@@ -58,6 +58,25 @@ $_SESSION['suc']=5; ?>
             <div class="form-group">
                <button class="btn btn-success" width="100px"><a href="view.php" style="text-decoration: none;
                    color:wheat; font-size:200%">View Staff Details</a></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+               <button class="btn btn-success" width="100px"><a href="hoddepartwise.php" style="text-decoration: none;
+                   color:wheat; font-size:200%">Department Wise</a></button>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+               <button class="btn btn-success" width="100px"><a href="hodyearwise.php" style="text-decoration: none;
+                   color:wheat; font-size:200%">Batch Wise</a></button>
             </div>
           </div>
         </div>

@@ -91,25 +91,26 @@
           <div class="row">
           <div class="col-lg-6">
             <div class="form-group">
-                <button type="button" class="btn btn-primary"><a href="depart.php" style="text-decoration:none; color:wheat; font-size:200%;"><strong>> </strong><b>Overall dept performance 1</b></a></button>
+                <button type="button" class="btn btn-primary"><a href="selectdept1.php" style="text-decoration:none; color:wheat; font-size:200%;"><strong>> </strong><b>Overall performance</b></a></button>
             </div>
           </div>
         </div>
-          <div class="row">
+    
+                        <div class="row">
           <div class="col-lg-6">
             <div class="form-group">
-                <button type="button" class="btn btn-primary"><a href="depart2.php" style="text-decoration:none; color:wheat; font-size:200%;"><strong>> </strong><b>Overall dept performance 2</b></a></button>
+                <button type="button" class="btn btn-primary"><a href="selectdept.php" style="text-decoration:none; color:wheat; font-size:200%;"><strong>></strong><b>Complete Report</b></a></button>
             </div>
           </div>
+            
         </div>
-
-
             <div class="row">
           <div class="col-lg-6">
             <div class="form-group">
                 <button type="button" class="btn btn-primary"><a href="submitinfo.php" style="text-decoration:none; color:wheat; font-size:200%;"><strong>> </strong><b>Check Submission</b></a></button>
             </div>
           </div>
+            
         </div>
           </div>
         </div>

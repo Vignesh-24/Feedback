@@ -24,6 +24,9 @@ if(isset($_SESSION['student'])=="")
     <img src="college.jpg" width="1000px" height="170px"></div>
     <a href="passchg.php" style="float:left; text-decoration:none; font-size:20px;">Change Password</a><br>
      <a href="logout.php" style="float:right; text-decoration:none; font-size:20px;">Logout</a><br>
+<div style="font-size:25px">
+<p>Welcome <?php echo $_SESSION['name']?></p>
+</div> 
     <div class="user">
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

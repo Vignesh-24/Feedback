@@ -7,8 +7,9 @@ if(isset($_SESSION['admin'])=="")
   }
     $staffid=$_SESSION['staffid'];
     $subcode=$_SESSION['subcode'];
+    $dp=$_SESSION['dept'];
     $sec=$_SESSION['sec'];$i=1;
-    $res=mysqli_query($scon,"select count(l1),AVG(l1),AVG(l2),AVG(l3),AVG(l4),AVG(l5),AVG(l6),AVG(l7),AVG(l8),AVG(l9),AVG(l10) from lab where sub_code='$subcode' and staff_id='$staffid' and section='$sec'");
+    $res=mysqli_query($scon,"select count(l1),AVG(l1),AVG(l2),AVG(l3),AVG(l4),AVG(l5),AVG(l6),AVG(l7),AVG(l8),AVG(l9),AVG(l10) from lab where sub_code='$subcode' and staff_id='$staffid' and section='$sec' and dept='$dp'");
     $row=mysqli_fetch_array($res);
      $res=mysqli_query($scon,"select * from subdetails where subcode='$subcode'");
     $row1=mysqli_fetch_array($res);

@@ -138,7 +138,7 @@
            <select name="sem" id="sem" onChange="semfn(this.value);">
     <option value="" disabled selected>Select semester</option>
 </select><br><br>
-        <strong>Batch</strong>
+        <strong>Reg</strong>
     <select name="batch" id="batch" onChange="batfn(this.value);">
     <option value="" disabled selected>Select Batch</option>
 </select><br><br>

@@ -90,7 +90,7 @@ margin-left:30px;
                        var semval1="8";
                        var semOptions = "";
                        semOptions +="<option> </option>";
-                semOptions += "<option>" + semval + "</option>";
+                semOptions += "<option>" + semval1 + "</option>";
                // semOptions += "<option>" + semval1 + "</option>";
             document.getElementById("sem").innerHTML = semOptions;
                     }

@@ -4,10 +4,10 @@ session_start();
  
 ?>
 
-
-
 <html>
 <body>
+    <h3><a href="logout.php" style="float:right; font-size:25px; font-color:red";><b>Logout</b></a></h3>
+    <h3><a href="hodopen.php" style="float:left; font-size:25px; font-color:red";><b>Back</b></a></h3>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -26,6 +26,9 @@ session_start();
     .sub{
         margin-left:100px;
     }
+        a{
+            color:darkblue;
+        }
     .abc{
       width:300px;
       height:200px;
@@ -100,7 +103,35 @@ $(document).ready(function(){
             <div class="form-group">
               <label><strong>Department</strong></label>
               <select name="dept" class="form-control">
-                  <option value="" disabled selected>Select Department</option>
+                  
+                  <?php 
+                  
+                  $option=$_SESSION['hod'];
+                  if($option=='MATHS' || $option== 'SCIENCE')
+                  { ?>
+                    <option value="" disabled selected>Select Department</option>
+    <option value="CSE">CSE</option>
+    <option value="MECH">MECH</option>
+    <option value="ECE">ECE</option>
+    <option value="EEE">EEE</option>
+    <option value="IT">IT</option>
+    <option value="CHEMICAL">CHEM</option>
+    <option value="CIVIL">CIVIL</option>
+    <option value="ICE">ICE</option>
+    <option value="EIE">EIE</option>
+    <option value="BIO">BIOTECH</option>   
+                  <?php }
+                  else if($option=='M.B.A')
+                  {
+                    echo "<option value='$option'>$option</option>";
+                      echo "<option value='MBA-INT'>MBA-INT</option>";
+                  }
+                  else{
+                  echo "<option value='$option'>$option</option>";}
+?>
+                  
+                  
+<!--
     <option value="CSE">CSE</option>
     <option value="MECH">MECH</option>
     <option value="ECE">ECE</option>
@@ -111,6 +142,7 @@ $(document).ready(function(){
     <option value="ICE">ICE</option>
     <option value="EIE">EIE</option>
     <option value="BIO">BIOTECH</option>
+-->
 
               </select>
           
@@ -155,7 +187,7 @@ $(document).ready(function(){
     $sem=$_POST['sem'];
   echo '<script type="text/javascript">alert("For Multiple staffs use + (Example TCS01+TCS02)");</script>';
   ?><br><br>
-   <div class="abc" style="margin-left:1070px">
+   <div class="abc" style="margin-left:900px">
        <label style="color:darkblue;">Search for a particular staffID(Ex: Type "TCS" and get all staff ID's of CSE department</label>
     <input type="text" id="mytext" placeholder="Search.." class="form-control">
     <div class="output1">

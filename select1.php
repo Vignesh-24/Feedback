@@ -1,5 +1,12 @@
  <div align="center">
     <img src="college.jpg" width="700px" height="170px"></div><br>
+<?php //if(isset($_SESSION['admin'])=="")
+    //{
+      //  header("Location: index.php");
+        //exit;
+    //}
+?>
+
 <?php
 session_start();
 require "dbconnect.php";
@@ -12,14 +19,16 @@ $staff1=$_GET['staffid'];
     $staff2=explode("-",$staff1);
     $staff=$staff2[0]; 
     $_SESSION['name']=$staff2[1];
+    $sem=$_SESSION['sem'];
     $dept=$_SESSION['dept'];
     if($dept=='M.B.A' && $bat==2018)
      $sql="Select * from mbastaffdetails where staffID='$staff'";
     else
-  $sql = "SELECT * FROM `staffdetails` WHERE staffID='$staff' and batch='$bat' and dept='$dept' and subcode IN (select subcode from subdetails where type='$type')";
+  $sql = "SELECT * FROM `staffdetails` WHERE staffID='$staff' and batch='$bat' and dept='$dept' and subcode IN (select subcode from subdetails where type='$type' and sem='$sem') and sem='$sem'";
   $res = mysqli_query($scon,$sql);
 ?>
  <a href="open.php" style="float:right; text-decoration:none; font-size:20px;">Home</a><br>
+ <a href="select.php" style="float:left; text-decoration:none; font-size:20px;">Back</a><br>
 <div align="center"><p style="font-size:25px;">Select Subject and Section</p></div>
 
 <hr>

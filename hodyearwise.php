@@ -1,3 +1,5 @@
+<?php
+session_start();?>
 <html>
 <title>Select batch</title>
 <style>
@@ -12,13 +14,16 @@
      <div align="center">
     <img src="college.jpg" width="1000px" height="140px"></div>
 <br><br>
-  <a href="open.php" style="float:right; text-decoration:none; font-size:20px;">Home</a><br><br>
+
+      <a style="float:left; font-size:20px;" href="hodopen.php">Home</a><br><br>
+
+<br><br>
 
 <div class="user">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-<form action="yearwiseres1.php" method="post">
+<form action="yearwiseres.php" method="post">
 <div class="row">
       <div class="col-lg-12">
         <div class="row">
@@ -39,20 +44,9 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label><strong>Dept</strong></label>
-                <select name='dept' class="form-control">
-                <option value="CSE">CSE</option>
-<option value="ECE">ECE</option>
-<option value="EEE">EEE</option>
-<option value="IT">IT</option>
-<option value="CHEMICAL">CHEMICAL</option>
-<option value="MECH">MECHANICAL</option>
-<option value="CIVIL">CIVIL</option>
-<option value="EIE">EIE</option>
-<option value="BIO">BIOTECH</option>
-<option value="ICE">ICE</option>
-<option value="M.C.A">M.C.A</option>
-<option value="M.B.A">M.B.A</option>
-</select>
+                <select name='dept' class="form-control"><?php
+	$temp=$_SESSION['hod'];
+                echo '<option value="'.$temp.'">'.$temp.'</option>';?></select>
               </div>
             </div>
           </div>
@@ -82,5 +76,6 @@
 </div>
 </body>
 </html>
+
 
 

@@ -14,17 +14,20 @@ if(isset($_SESSION['admin'])=="")
     $subcode=$_SESSION['subcode'];
     $bat=$_SESSION['batch'];
     $sec=$_SESSION['sec'];
-    $res=mysqli_query($scon,"select COUNT(t1),AVG(t1),AVG(t2),AVG(t3),AVG(t4),AVG(t5),AVG(t6),AVG(t7),AVG(t8),AVG(t9),AVG(t10),AVG(t11),AVG(t12),AVG(t13),AVG(t14),AVG(t15),AVG(t16),AVG(t17),AVG(t18),AVG(t19),AVG(t20) from theory where sub_code='$subcode' and staff_id='$staffid' and section='$sec' and batch='$bat'");
+    $dp=$_SESSION['dept'];
+    $res=mysqli_query($scon,"select COUNT(t1),AVG(t1),AVG(t2),AVG(t3),AVG(t4),AVG(t5),AVG(t6),AVG(t7),AVG(t8),AVG(t9),AVG(t10),AVG(t11),AVG(t12),AVG(t13),AVG(t14),AVG(t15),AVG(t16),AVG(t17),AVG(t18),AVG(t19),AVG(t20) from theory where sub_code='$subcode' and staff_id='$staffid' and section='$sec' and batch='$bat' and (dept='$dp' or dept='1')");
     $row=mysqli_fetch_array($res);
     $res=mysqli_query($scon,"select * from subdetails where subcode='$subcode'");
     $row1=mysqli_fetch_array($res);
     $name=$row1['subname'];
     $sem=$row1['sem'];
    $percent=$row['AVG(t1)']+$row['AVG(t2)']+$row['AVG(t3)']+$row['AVG(t4)']+$row['AVG(t5)']+$row['AVG(t6)']+$row['AVG(t7)']+$row['AVG(t8)']+$row['AVG(t9)']+$row['AVG(t10)']+$row['AVG(t11)']+$row['AVG(t12)']+$row['AVG(t13)']+$row['AVG(t14)']+$row['AVG(t15)']+$row['AVG(t16)']+$row['AVG(t17)']+$row['AVG(t18)']+$row['AVG(t19)']+$row['AVG(t20)'];
+
+   $upd=mysqli_query($scon,"update staffdetails set performance='$percent' where staffID='$staffid' and subcode='$subcode' and batch='$bat' and dept='$dp' and sec='$sec'");
    function count1($t,$i)
    {
-     global $staffid,$subcode,$sec,$scon,$bat;
-     $res=mysqli_query($scon,"select COUNT('$t') as ct from theory where $t='$i' and sub_code='$subcode' and staff_id='$staffid' and section='$sec' and batch='$bat'");
+     global $staffid,$subcode,$sec,$scon,$bat,$dp;
+     $res=mysqli_query($scon,"select COUNT('$t') as ct from theory where $t='$i' and sub_code='$subcode' and staff_id='$staffid' and section='$sec' and batch='$bat' and (dept='$dp' or dept='1')");
      $row2=mysqli_fetch_assoc($res);
      return $row2["ct"];
      
@@ -118,6 +121,7 @@ table {
 <body>
     <div align="center" id="printableArea1">
     <img src="college.jpg" width="700px" height="90px"></div>
+    <a href="open.php" style="float:right; text-decoration:none; font-size:20px;">Home</a><br>
 <!--    <br><a href="open.php">Home</a>-->
 <!--    <div id="xyz"><a href="open.php" style="float:left; text-decoration:none; font-size:20px;">Home</a></div><br>-->
 <form action="select.php" method="post">
@@ -432,7 +436,7 @@ table {
     <p style="font-size:20px">
             <u><strong>COMMENTS</strong></u></p><br>
         <?php
-        $res=mysqli_query($scon,"select comments from theory where sub_code='$subcode' and staff_id='$staffid' and section='$sec'");
+        $res=mysqli_query($scon,"select comments from theory where sub_code='$subcode' and staff_id='$staffid' and section='$sec' and (dept='$dp' or dept='1')");
         while($list = mysqli_fetch_assoc($res)){
             $comment=$list['comments'];
         ?>
